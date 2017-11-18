@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material';
 import { Issue } from './issue.model';
@@ -9,7 +9,7 @@ import { Estimate } from './estimate/estimate.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   
   displayedColumns = ['name', 'low', 'medium', 'high', 'sum'];
 
@@ -36,7 +36,7 @@ export class AppComponent {
     low_weight: 1,
     medium: 0,
     medium_weight: 2,
-    high: 3,
+    high: 0,
     high_weight: 3,
     sum: 0
   },
@@ -46,16 +46,26 @@ export class AppComponent {
     low_weight: 1,
     medium: 0,
     medium_weight: 2,
-    high: 3,
+    high: 0,
     high_weight: 3,
     sum: 0
   }];
 
   dataSource = new MatTableDataSource<Estimate>(this.estimates);
 
-  update(estimate, $event) {
+  ngOnInit() {
 
-    console.log('estimate', estimate);
-    console.log('event', $event);
+    this.dataSource.data.forEach(this.updateSum);
+  }
+
+  updateProp = (prop: string, estimate : Estimate, inputValue) => {
+
+    if(inputValue) {
+      estimate[prop] = inputValue;        
+    }
+  }
+
+  updateSum(estimate : Estimate) {
+    estimate.sum = (estimate.low * estimate.low_weight) + (estimate.medium * estimate.medium_weight) + (estimate.high * estimate.high_weight);
   }
 }

@@ -9,16 +9,16 @@ import 'rxjs/add/operator/filter';
 })
 export class InlineEditComponent {
 
-  /** Overrides the comment and provides a reset value when changes are cancelled. */
+  /** Overrides the modelValue and provides a reset value when changes are cancelled. */
   @Input()
   get value(): string { return this._value; }
   set value(x: string) {
-    this.comment = this._value = x;
+    this.modelValue = this._value = x;
   }
   private _value = '';
 
   /** Form model for the input. */
-  comment = '';
+  modelValue = '';
 
   constructor(@Optional() @Host() public popover: SatPopover) { }
 
@@ -27,13 +27,13 @@ export class InlineEditComponent {
     if (this.popover) {
       this.popover.closed
         .filter(val => val == null)
-        .subscribe(() => this.comment = this.value || '');
+        .subscribe(() => this.modelValue = this.value || '');
     }
   }
 
   onSubmit() {
     if (this.popover) {
-      this.popover.close(this.comment);
+      this.popover.close(this.modelValue);
     }
   }
 

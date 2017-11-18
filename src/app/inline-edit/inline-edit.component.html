@@ -2,8 +2,8 @@
     <div class="mat-subheading-2">Edit</div>
 
     <mat-form-field>
-        <input matInput maxLength="140" name="comment" [(ngModel)]="comment">
-        <mat-hint align="end">{{comment?.length || 0}}/140</mat-hint>
+        <input matInput maxLength="140" name="comment" [(ngModel)]="modelValue">
+        <mat-hint align="end">{{modelValue?.length || 0}}/140</mat-hint>
     </mat-form-field>
 
     <div class="actions">
