@@ -8,17 +8,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { SatPopoverModule } from '@ncstate/sat-popover';
 
 import { AppComponent } from './app.component';
-import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { EstimateComponent } from './estimate/estimate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EstimateComponent,
-    InlineEditComponent
+    EstimateComponent
   ],
   imports: [
     BrowserModule,
@@ -29,8 +26,7 @@ import { EstimateComponent } from './estimate/estimate.component';
     MatListModule,
     MatToolbarModule,
     MatInputModule,
-    MatButtonModule,
-    SatPopoverModule
+    MatButtonModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

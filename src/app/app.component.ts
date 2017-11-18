@@ -55,17 +55,22 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dataSource.data.forEach(this.updateSum);
+    this.dataSource.data.forEach(this.updateEstimateSum);    
   }
 
   updateProp = (prop: string, estimate : Estimate, inputValue) => {
 
     if(inputValue) {
-      estimate[prop] = inputValue;        
+      estimate[prop] = inputValue;    
+      this.updateEstimateSum(estimate);
     }
   }
 
-  updateSum(estimate : Estimate) {
+  updateEstimateSum(estimate : Estimate) {
     estimate.sum = (estimate.low * estimate.low_weight) + (estimate.medium * estimate.medium_weight) + (estimate.high * estimate.high_weight);
+  }
+
+  sumAll() {
+    return this.dataSource.data.map(v => v.sum).reduce((s, v) => s + v, 0);
   }
 }

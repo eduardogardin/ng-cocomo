@@ -16,7 +16,11 @@
                 <mat-header-cell *matHeaderCellDef>Low</mat-header-cell>
                 <mat-cell *matCellDef="let estimate">
                     <mat-form-field>
-                        <input matInput maxLength="2" onClick="this.select();" name="low" [(ngModel)]="estimate.low">
+                        <input matInput maxLength="2"
+                            onClick="this.select();"
+                            name="low"
+                            [(ngModel)]="estimate.low"
+                            (ngModelChange)="updateProp('low', estimate, $event)">
                     </mat-form-field>
                 </mat-cell>
             </ng-container>
@@ -25,33 +29,46 @@
                 <mat-header-cell *matHeaderCellDef>Medium</mat-header-cell>
                 <mat-cell *matCellDef="let estimate">                    
                     <mat-form-field>
-                        <input matInput maxLength="2" onClick="this.select();" name="medium" [(ngModel)]="estimate.medium">
+                        <input matInput maxLength="2"
+                               onClick="this.select();"
+                               name="medium"
+                               [(ngModel)]="estimate.medium"
+                               (ngModelChange)="updateProp('medium', estimate, $event)">
                     </mat-form-field>
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="high">
                 <mat-header-cell *matHeaderCellDef>High</mat-header-cell>
-                <mat-cell *matCellDef="let estimate">     
-                    <mat-form-field>               
-                        <input matInput maxLength="2" onClick="this.select();" name="medium" [(ngModel)]="estimate.high">
+                <mat-cell *matCellDef="let estimate">
+                    <mat-form-field>
+                        <input matInput maxLength="2"
+                            onClick="this.select();"
+                            name="high"
+                            [(ngModel)]="estimate.low"
+                            (ngModelChange)="updateProp('high', estimate, $event)">
                     </mat-form-field>
                 </mat-cell>
-            </ng-container>            
+            </ng-container>
 
             <ng-container matColumnDef="sum">
                 <mat-header-cell *matHeaderCellDef>Sum</mat-header-cell>
-                <mat-cell *matCellDef="let estimate">
-                    {{(estimate.low * estimate.low_weight) + (estimate.medium * estimate.medium_weight) + (estimate.high * estimate.high_weight)}}
-                </mat-cell>
+                <mat-cell *matCellDef="let estimate" [style.color]="'blue'">{{estimate.sum}}</mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
-
-        <mat-card-actions>
-
-        </mat-card-actions>
     </mat-card-content>
+
+    <h2 class="result-text">
+        Estimated time: {{this.sumAll()}}
+    </h2>
+
+    <mat-card-actions>
+        <div class="action-buttons">
+            <button mat-raised-button color="warn">Reset</button>
+            <button mat-raised-button color="primary">Estimate</button>
+        </div>
+    </mat-card-actions>
 </mat-card>
