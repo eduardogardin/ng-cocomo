@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  appName = 'ng-cocomo';  
+  appName = 'ng-cocomo';
 }
