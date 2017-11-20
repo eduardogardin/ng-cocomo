@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { MatTableDataSource } from '@angular/material';
 import { Issue } from '../issue/issue.model';
 import { Estimate } from './estimate.model';
+import { EstimateService } from './estimate.service';
+import { IssueService } from '../issue/issue.service';
 
 @Component({
   selector: 'app-estimate',
@@ -14,49 +17,19 @@ export class EstimateComponent implements OnInit {
 
   displayedColumns = ['name', 'low', 'medium', 'high', 'sum'];
   
-    issue : Issue = {
-      id: 193663,
-      project: {
-          id: 904,
-          name: 'E-Almoxarifado'
-      },
-      tracker: {
-          id: 9,
-          name: 'História'
-      },
-      status: {
-          id: 2,
-          name: 'Doing'
-      },
-      subject: 'Implementar endpoint no backend para consultar Lotes de um Item'
-    };
-  
-    estimates : Estimate[] = [{
-      name: 'Telas',
-      low: 0,
-      low_weight: 1,
-      medium: 0,
-      medium_weight: 2,
-      high: 0,
-      high_weight: 3,
-      sum: 0
-    },
-    {
-      name: 'Banco de dados',
-      low: 0,
-      low_weight: 1,
-      medium: 0,
-      medium_weight: 2,
-      high: 0,
-      high_weight: 3,
-      sum: 0
-    }];
-  
-    dataSource = new MatTableDataSource<Estimate>(this.estimates);
+    issue : Observable<Issue>;    
+    dataSource = new MatTableDataSource<Estimate>();
+
+    constructor(private estimateService : EstimateService,
+                private issueService : IssueService) {}
   
     ngOnInit() {
-  
-      this.dataSource.data.forEach(this.updateEstimateSum);    
+      
+      this.issue = this.issueService.findIssue(1);
+      this.estimateService.findEstimatesByIssue(1).subscribe(data => {
+        this.dataSource.data = data;  
+        this.dataSource.data.forEach(this.updateEstimateSum);    
+      })
     }
   
     updateProp = (prop: string, estimate : Estimate, inputValue) => {

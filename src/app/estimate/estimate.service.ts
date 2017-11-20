@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Issue } from '../issue/issue.model';
+import { Estimate } from './estimate.model';
 
 @Injectable()
 export class EstimateService {
 
   constructor() { }
 
-  findIssue(id : number) : Observable<Issue> {
+  findEstimatesByIssue(id : number) : Observable<Estimate[]> {
 
-    return Observable.of({
-      id: 193663,
-      project: {
-          id: 904,
-          name: 'E-Almoxarifado'
-      },
-      tracker: {
-          id: 9,
-          name: 'História'
-      },
-      status: {
-          id: 2,
-          name: 'Doing'
-      },
-      subject: 'Implementar endpoint no backend para consultar Lotes de um Item'
-    });
+    return Observable.of([{
+      name: 'Telas',
+      low: 0,
+      low_weight: 1,
+      medium: 0,
+      medium_weight: 2,
+      high: 0,
+      high_weight: 3,
+      sum: 0
+    },
+    {
+      name: 'Banco de dados',
+      low: 0,
+      low_weight: 1,
+      medium: 0,
+      medium_weight: 2,
+      high: 0,
+      high_weight: 3,
+      sum: 0
+    }]);
   }
 }

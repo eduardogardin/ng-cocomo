@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { EstimateService } from './estimate.service';
+import { IssueService } from '../issue/issue.service';
 import { EstimateComponent } from './estimate.component';
 import { EstimateRoutes } from './estimate.routes';
 
@@ -23,6 +24,6 @@ import { EstimateRoutes } from './estimate.routes';
         MatButtonModule
     ],
     declarations: [ EstimateComponent ],
-    providers: [ EstimateService ]
+    providers: [ EstimateService, IssueService ]
 })
 export class EstimateModule {}
