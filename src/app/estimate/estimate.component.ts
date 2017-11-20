@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material';
-import { Issue } from '../issue.model';
+import { Issue } from '../issue/issue.model';
 import { Estimate } from './estimate.model';
 
 @Component({

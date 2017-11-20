@@ -8,10 +8,11 @@ import { AppRouterModule } from './app.routes';
 import { AppComponent } from './app.component';
 import { EstimateModule } from './estimate/estimate.module';
 import { ProjectsModule } from './projects/projects.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +20,7 @@ import { ProjectsModule } from './projects/projects.module';
     FormsModule,
     MatToolbarModule,
     AppRouterModule,    
+    HomeModule,
     ProjectsModule,
     EstimateModule
   ],
