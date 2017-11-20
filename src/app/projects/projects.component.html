@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-title>Projects</mat-card-title>
+  <mat-card-title>{{issue.subject}}</mat-card-title>
+
+  <mat-card-content>
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+          <mat-cell *matCellDef="let estimate">{{estimate.name}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>  
+  </mat-card-content>
+</mat-card>
