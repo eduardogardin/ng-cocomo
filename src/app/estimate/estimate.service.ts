@@ -8,7 +8,7 @@ export class EstimateService {
 
   constructor() { }
 
-  findEstimatesByIssue(id : number) : Observable<Estimate[]> {
+  findEstimatesByIssue(id: number): Observable<Estimate[]> {
 
     return Observable.of([{
       name: 'Telas',

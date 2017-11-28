@@ -4,4 +4,4 @@ const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
-export const AppRouterModule = RouterModule.forRoot(appRoutes, { enableTracing: true});
+export const AppRouterModule = RouterModule.forRoot(appRoutes, { enableTracing: false});

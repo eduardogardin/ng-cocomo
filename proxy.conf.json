@@ -1,0 +1,11 @@
+{
+  "/redmine": {
+    "target": "https://my.server.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/redmine": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

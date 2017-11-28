@@ -61,11 +61,12 @@ export class EstimateComponent implements OnInit {
 
     estimate() {
 
-      this.issueService.updateIssue(this.issue, this.sumAll()).subscribe(result => {
-        this.snackBar.open('Estimate!', 'Dismiss', {
-          duration: 2000
+      this.issueService.updateIssue(this.issue, this.sumAll())
+        .subscribe(result => {
+          this.snackBar.open('Estimate!', 'Dismiss', {
+            duration: 2000
+          });
         });
-      });
     }
 
     sumAll() {

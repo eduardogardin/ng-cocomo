@@ -1,37 +1,31 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Issue } from './issue.model';
 
 @Injectable()
 export class IssueService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   findIssue(id: number): Observable<Issue> {
 
-    return Observable.of({
-      id: 193663,
-      project: {
-          id: 904,
-          name: 'E-Almoxarifado'
-      },
-      tracker: {
-          id: 9,
-          name: 'História'
-      },
-      status: {
-          id: 2,
-          name: 'Doing'
-      },
-      subject: 'Implementar endpoint no backend para consultar Lotes de um Item'
-    });
+    return this.httpClient.get(`/redmine/issues/${id}.json`)
+      .pipe(
+        map(response => response['issue'])
+      );
   }
 
-  updateIssue({id}: Issue, estimatedTime: number): Observable<any> {
+  updateIssue({id}: Issue, estimatedHours: number): Observable<any> {
 
-    console.log('updating issue id', id);
-
-    return Observable.of({});
+    return this.httpClient.post(`/redmine/issues/${id}.json`, {
+      estimated_hours: estimatedHours
+    })
+    .pipe(
+      map(response => response['issue'])
+    );
   }
 }
