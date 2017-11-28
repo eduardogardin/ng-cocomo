@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+
+import { tap, switchMap } from 'rxjs/operators';
 
 import { MatTableDataSource } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { Issue } from '../issue/issue.model';
 import { Estimate } from './estimate.model';
 import { EstimateService } from './estimate.service';
@@ -16,34 +19,55 @@ import { IssueService } from '../issue/issue.service';
 export class EstimateComponent implements OnInit {
 
   displayedColumns = ['name', 'low', 'medium', 'high', 'sum'];
-  
-    issue : Observable<Issue>;    
+
+    issue: Issue;
     dataSource = new MatTableDataSource<Estimate>();
 
-    constructor(private estimateService : EstimateService,
-                private issueService : IssueService) {}
-  
+    constructor(private activatedRoute: ActivatedRoute,
+                private estimateService: EstimateService,
+                private issueService: IssueService,
+                private snackBar: MatSnackBar) {}
+
     ngOnInit() {
-      
-      this.issue = this.issueService.findIssue(1);
-      this.estimateService.findEstimatesByIssue(1).subscribe(data => {
-        this.dataSource.data = data;  
-        this.dataSource.data.forEach(this.updateEstimateSum);    
-      })
+
+      this.activatedRoute.params
+        .pipe(
+          switchMap(param => this.issueService.findIssue(param.id))
+        )
+        .subscribe(issue => {
+          this.issue = issue;
+
+          this.estimateService.findEstimatesByIssue(issue.id)
+            .subscribe(data => {
+              this.dataSource.data = data;
+              this.dataSource.data.forEach(this.updateEstimateSum);
+          });
+      });
     }
-  
-    updateProp = (prop: string, estimate : Estimate, inputValue) => {
-  
-      if(inputValue) {
-        estimate[prop] = inputValue;    
+
+    updateProp = (prop: string, estimate: Estimate, inputValue) => {
+
+      if (inputValue) {
+        estimate[prop] = inputValue;
         this.updateEstimateSum(estimate);
       }
     }
-  
-    updateEstimateSum(estimate : Estimate) {
-      estimate.sum = (estimate.low * estimate.low_weight) + (estimate.medium * estimate.medium_weight) + (estimate.high * estimate.high_weight);
+
+    updateEstimateSum(estimate: Estimate) {
+      estimate.sum = (estimate.low * estimate.low_weight) +
+                     (estimate.medium * estimate.medium_weight) +
+                     (estimate.high * estimate.high_weight);
     }
-  
+
+    estimate() {
+
+      this.issueService.updateIssue(this.issue, this.sumAll()).subscribe(result => {
+        this.snackBar.open('Estimate!', 'Dismiss', {
+          duration: 2000
+        });
+      });
+    }
+
     sumAll() {
       return this.dataSource.data.map(v => v.sum).reduce((s, v) => s + v, 0);
     }

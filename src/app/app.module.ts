@@ -19,7 +19,7 @@ import { HomeModule } from './home/home.module';
     BrowserAnimationsModule,
     FormsModule,
     MatToolbarModule,
-    AppRouterModule,    
+    AppRouterModule,
     HomeModule,
     ProjectsModule,
     EstimateModule

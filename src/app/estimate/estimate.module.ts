@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { EstimateService } from './estimate.service';
 import { IssueService } from '../issue/issue.service';
@@ -19,9 +20,10 @@ import { EstimateRoutes } from './estimate.routes';
         FormsModule,
         MatCardModule,
         MatTableModule,
-        MatListModule,        
+        MatListModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSnackBarModule
     ],
     declarations: [ EstimateComponent ],
     providers: [ EstimateService, IssueService ]

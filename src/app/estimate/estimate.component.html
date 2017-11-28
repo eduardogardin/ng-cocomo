@@ -6,7 +6,7 @@
           <ng-container matColumnDef="name">
               <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
               <mat-cell *matCellDef="let estimate">{{estimate.name}}</mat-cell>
-          </ng-container>   
+          </ng-container>
 
           <ng-container matColumnDef="low">
               <mat-header-cell *matHeaderCellDef>Low</mat-header-cell>
@@ -23,7 +23,7 @@
 
           <ng-container matColumnDef="medium">
               <mat-header-cell *matHeaderCellDef>Medium</mat-header-cell>
-              <mat-cell *matCellDef="let estimate">                    
+              <mat-cell *matCellDef="let estimate">
                   <mat-form-field>
                       <input matInput maxLength="2"
                               onClick="this.select();"
@@ -64,7 +64,7 @@
   <mat-card-actions>
       <div class="action-buttons">
           <button mat-raised-button color="warn">Reset</button>
-          <button mat-raised-button color="primary">Estimate</button>
+          <button mat-raised-button color="primary" (click)="estimate()">Estimate</button>
       </div>
   </mat-card-actions>
 </mat-card>

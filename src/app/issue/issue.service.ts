@@ -8,7 +8,7 @@ export class IssueService {
 
   constructor() { }
 
-  findIssue(id : number) : Observable<Issue> {
+  findIssue(id: number): Observable<Issue> {
 
     return Observable.of({
       id: 193663,
@@ -26,5 +26,12 @@ export class IssueService {
       },
       subject: 'Implementar endpoint no backend para consultar Lotes de um Item'
     });
+  }
+
+  updateIssue({id}: Issue, estimatedTime: number): Observable<any> {
+
+    console.log('updating issue id', id);
+
+    return Observable.of({});
   }
 }
