@@ -74,6 +74,11 @@ export class EstimateComponent implements OnInit {
         });
     }
 
+    reset = () => {
+
+      this.dataSource.data.forEach(e => { e.low = 0; e.medium = 0; e.high = 0; e.sum = 0;});
+    }
+
     sumAll() {
       return this.dataSource.data.map(v => v.sum).reduce((s, v) => s + v, 0);
     }

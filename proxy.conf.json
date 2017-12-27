@@ -1,6 +1,6 @@
 {
   "/redmine": {
-    "target": "https://myredmineserver.com",
+    "target": "https://redmine.elotech.com.br",
     "secure": false,
     "pathRewrite": {
       "^/redmine": ""
