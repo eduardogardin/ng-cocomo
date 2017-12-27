@@ -1,4 +1,5 @@
 export const environment = {
-  production: true,
-  apiToken: 'apiToken'
+  production: false,
+  apiToken: 'myApiToken',
+  baseUrl: 'https://myredmine-server.com'
 };

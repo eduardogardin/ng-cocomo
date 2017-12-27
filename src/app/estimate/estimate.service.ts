@@ -11,13 +11,33 @@ export class EstimateService {
   findEstimatesByIssue(id: number): Observable<Estimate[]> {
 
     return Observable.of([{
-      name: 'Telas',
+      name: 'Frontend',
       low: 0,
       low_weight: 1,
       medium: 0,
-      medium_weight: 2,
+      medium_weight: 3,
       high: 0,
-      high_weight: 3,
+      high_weight: 5,
+      sum: 0
+    },
+    {
+      name: 'Backend',
+      low: 0,
+      low_weight: 1,
+      medium: 0,
+      medium_weight: 3,
+      high: 0,
+      high_weight: 5,
+      sum: 0
+    },
+    {
+      name: 'Relatórios',
+      low: 0,
+      low_weight: 1,
+      medium: 0,
+      medium_weight: 3,
+      high: 0,
+      high_weight: 5,
       sum: 0
     },
     {
@@ -25,9 +45,9 @@ export class EstimateService {
       low: 0,
       low_weight: 1,
       medium: 0,
-      medium_weight: 2,
+      medium_weight: 3,
       high: 0,
-      high_weight: 3,
+      high_weight: 5,
       sum: 0
     }]);
   }

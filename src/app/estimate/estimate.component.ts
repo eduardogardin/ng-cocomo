@@ -10,6 +10,8 @@ import { Estimate } from './estimate.model';
 import { EstimateService } from './estimate.service';
 import { IssueService } from '../issue/issue.service';
 
+import { environment } from '../../environments/environment';
+
 @Component({
   selector: 'app-estimate',
   templateUrl: './estimate.component.html',
@@ -59,18 +61,20 @@ export class EstimateComponent implements OnInit {
                      (estimate.high * estimate.high_weight);
     }
 
-    estimate() {
+    estimate = () => {
 
-      this.issueService.updateIssue(this.issue, this.sumAll())
+      const sum = this.sumAll();
+
+      this.issueService.updateIssue(this.issue, sum)
         .subscribe(result => {
-          this.snackBar.open('Estimate!', 'Dismiss', {
+          this.snackBar.open(`Estimated ${sum} points to issue #${this.issue.id}`, 'Click to dismiss', {
             duration: 2000
           });
+          window.location.href = `${environment.baseUrl}/issues/${this.issue.id}`;
         });
     }
 
     sumAll() {
       return this.dataSource.data.map(v => v.sum).reduce((s, v) => s + v, 0);
     }
-
 }

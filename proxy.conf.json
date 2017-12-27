@@ -1,6 +1,6 @@
 {
   "/redmine": {
-    "target": "https://my.server.com",
+    "target": "https://myredmineserver.com",
     "secure": false,
     "pathRewrite": {
       "^/redmine": ""

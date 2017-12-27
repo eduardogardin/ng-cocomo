@@ -21,11 +21,12 @@ export class IssueService {
 
   updateIssue({id}: Issue, estimatedHours: number): Observable<any> {
 
-    return this.httpClient.post(`/redmine/issues/${id}.json`, {
-      estimated_hours: estimatedHours
-    })
-    .pipe(
-      map(response => response['issue'])
-    );
+    return this.httpClient.put(`/redmine/issues/${id}.json`, {
+      issue: {
+        estimated_hours: estimatedHours
+      }
+    }, {
+      responseType: 'text'
+    });
   }
 }
