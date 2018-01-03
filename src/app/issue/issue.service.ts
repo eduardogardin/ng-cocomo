@@ -23,7 +23,7 @@ export class IssueService {
 
     return this.httpClient.put(`/redmine/issues/${id}.json`, {
       issue: {
-        estimated_hours: estimatedHours
+        custom_fields: [{id: 137, name: 'Pontos Estimados', value: estimatedHours}]
       }
     }, {
       responseType: 'text'

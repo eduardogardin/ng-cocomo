@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -16,6 +17,7 @@ import { EstimateRoutes } from './estimate.routes';
 
 @NgModule({
     imports: [
+        CommonModule,
         EstimateRoutes,
         FormsModule,
         MatCardModule,
@@ -25,7 +27,7 @@ import { EstimateRoutes } from './estimate.routes';
         MatButtonModule,
         MatSnackBarModule
     ],
-    declarations: [ EstimateComponent ],
+    declarations: [ EstimateComponent],
     providers: [ EstimateService, IssueService ]
 })
 export class EstimateModule {}

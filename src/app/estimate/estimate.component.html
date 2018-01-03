@@ -10,39 +10,39 @@
 
           <ng-container matColumnDef="low">
               <mat-header-cell *matHeaderCellDef>Low</mat-header-cell>
-              <mat-cell *matCellDef="let estimate">
+              <mat-cell *matCellDef="let estimateLow">
                   <mat-form-field>
                       <input matInput maxLength="2"
                           onClick="this.select();"
-                          name="low"
-                          [(ngModel)]="estimate.low"
-                          (ngModelChange)="updateProp('low', estimate, $event)">
+                          [name]="'low-' + estimateLow.name"
+                          [(ngModel)]="estimateLow.low"
+                          (ngModelChange)="updateProp('low', estimateLow, $event)">
                   </mat-form-field>
               </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="medium">
               <mat-header-cell *matHeaderCellDef>Medium</mat-header-cell>
-              <mat-cell *matCellDef="let estimate">
+              <mat-cell *matCellDef="let estimateMedium">
                   <mat-form-field>
                       <input matInput maxLength="2"
                               onClick="this.select();"
-                              name="medium"
-                              [(ngModel)]="estimate.medium"
-                              (ngModelChange)="updateProp('medium', estimate, $event)">
+                              [name]="'medium-' + estimateMedium.name"
+                              [(ngModel)]="estimateMedium.medium"
+                              (ngModelChange)="updateProp('medium', estimateMedium, $event)">
                   </mat-form-field>
               </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="high">
               <mat-header-cell *matHeaderCellDef>High</mat-header-cell>
-              <mat-cell *matCellDef="let estimate">
+              <mat-cell *matCellDef="let estimateHigh">
                   <mat-form-field>
                       <input matInput maxLength="2"
                           onClick="this.select();"
-                          name="high"
-                          [(ngModel)]="estimate.high"
-                          (ngModelChange)="updateProp('high', estimate, $event)">
+                          [name]="'high-' + estimateHigh.name"
+                          [(ngModel)]="estimateHigh.high"
+                          (ngModelChange)="updateProp('high', estimateHigh, $event)">
                   </mat-form-field>
               </mat-cell>
           </ng-container>

@@ -47,7 +47,10 @@ export class EstimateComponent implements OnInit {
       });
     }
 
-    updateProp = (prop: string, estimate: Estimate, inputValue) => {
+    updateProp(prop: string, estimate: Estimate, inputValue) {
+
+      console.log('update prop: ', prop);
+      console.log('update prop => estimate: ', estimate);
 
       if (inputValue) {
         estimate[prop] = inputValue;
